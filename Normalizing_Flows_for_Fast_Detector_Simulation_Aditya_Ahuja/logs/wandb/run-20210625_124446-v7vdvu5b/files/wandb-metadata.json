@@ -1,0 +1,26 @@
+{
+    "os": "Linux-5.4.104+-x86_64-with-Ubuntu-18.04-bionic",
+    "python": "3.7.10",
+    "heartbeatAt": "2021-06-25T12:44:56.390128",
+    "startedAt": "2021-06-25T12:44:46.855631",
+    "docker": null,
+    "gpu": "Tesla T4",
+    "gpu_count": 1,
+    "cpu_count": 2,
+    "cuda": "11.0.228",
+    "args": [
+        "-f",
+        "/root/.local/share/jupyter/runtime/kernel-4665b181-9b93-4dc1-b731-70aae3ae21e4.json"
+    ],
+    "state": "running",
+    "program": "nb1.ipynb",
+    "root": "/content/drive/My Drive/_GSoC/Normalizing-Flows",
+    "git": {
+        "remote": "https://github.com/adiah80/Normalizing-Flows.git",
+        "commit": "3b4d2a4d8d89280c9f8b2887907fef8332226c0c"
+    },
+    "email": null,
+    "host": "886c08d3bcb4",
+    "username": "root",
+    "executable": "/usr/bin/python3"
+}
