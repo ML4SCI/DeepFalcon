@@ -76,11 +76,11 @@ Note: Temporary files have been excluded.
 
 It is recommended to use Google Colab to view/run the below notebooks. 
 
-- BNAF 1 - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/BNAF_1.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/master/nbs/BNAF_1.ipynb)
-- BNAF 2 - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/BNAF_2.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/master/nbs/BNAF_2.ipynb)
-- BNAF 3 - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/BNAF_3.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/master/nbs/BNAF_3.ipynb)
-- BNAF 4 - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/BNAF_4.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/master/nbs/BNAF_4.ipynb)
-- MAF - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/MAF.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/master/nbs/MAF.ipynb)
+- BNAF 1 - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/BNAF_1.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/main/nbs/BNAF_1.ipynb)
+- BNAF 2 - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/BNAF_2.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/main/nbs/BNAF_2.ipynb)
+- BNAF 3 - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/BNAF_3.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/main/nbs/BNAF_3.ipynb)
+- BNAF 4 - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/BNAF_4.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/main/nbs/BNAF_4.ipynb)
+- MAF - [Link](https://github.com/adiah80/Falcon-NF/blob/main/nbs/MAF.ipynb)  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adiah80/Falcon-NF/blob/main/nbs/MAF.ipynb)
 
 
 
