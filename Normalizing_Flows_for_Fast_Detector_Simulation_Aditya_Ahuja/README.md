@@ -1,4 +1,3 @@
-
 <div align="center">
 
 #  Normalizing Flows for Fast Detector Simulation
@@ -34,13 +33,11 @@ and [Masked Autoregressive Flows](https://proceedings.neurips.cc/paper/2017/file
 - Weights and Configs for trained models can be found in the `results` directory. 
 - [Weights and Biases](https://wandb.ai/site) was used to track the training progress. The corresponding config files can be found in `logs/wandb`. 
 - Notebooks to rerun the experiments can be found in the `nbs` directory. 
-- The dataset can be downloaded from this [link](https://cernbox.cern.ch/index.php/s/xcBgv3Vw3rmHu9u) using the `get_dataset.py` script. 
-
 
 # Directory Structure
 ```
 Falcon-NF
-├── data                                     # Download Link Below
+├── data                                     # Download from CERNBox
 │   ├── Boosted_Jets_Sample-0.snappy.parquet
 │   ├── Boosted_Jets_Sample-1.snappy.parquet
 │   ├── Boosted_Jets_Sample-2.snappy.parquet
@@ -58,18 +55,15 @@ Falcon-NF
 │       ├── run-20210625_104619-1yqfgb06
 │       ..  
 │       └── latest-run 
-├── nbs
-│   ├── BNAF_1.ipynb
-│   ├── BNAF_2.ipynb
-│   ├── BNAF_3.ipynb
-│   ├── BNAF_4.ipynb
-│   └── MAF.ipynb
-└── get_dataset.py
+└── nbs
+    ├── BNAF_1.ipynb
+    ├── BNAF_2.ipynb
+    ├── BNAF_3.ipynb
+    ├── BNAF_4.ipynb
+    └── MAF.ipynb
 
 ```
 Note: Temporary files have been excluded.
-
-
 
 
 # Colab Links
@@ -156,7 +150,6 @@ BNAF(
 # Resources and References
 
 ### Drive Links
-- Dataset: [Link](https://cernbox.cern.ch/index.php/s/xcBgv3Vw3rmHu9u)
 - Logs : [Drive Link](https://drive.google.com/drive/folders/1-0703HEm-GsAYJOsYdr6-ebYSAw_rejp?usp=sharing)
 - Results: [Drive Link](https://drive.google.com/drive/folders/1F_ENUHkIqCZnLxawwzhuGX7AWNBwhWAB?usp=sharing)
 
