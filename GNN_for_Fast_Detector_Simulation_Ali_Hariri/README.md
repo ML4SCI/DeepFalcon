@@ -27,6 +27,8 @@ We use the k-nearest neighbour algorithm to connect each node representing a rec
 
 ![Model Architecture](https://github.com/ahariri13/FALCON/blob/master/model.PNG)
 
+We train the GVAE model on a cluster using Volta V100 GPUs with 16 GB of RAM. Following profiling and code optimization for enhanced CPU performance, the training is scaled on multiple GPUs using the Horovod library. We compare the results to the training on a single GPU with a batch size of 32 for 100 iterations, i.e a total of 3200 graph samplesWe notice an increase in the performance with an increase in the GPU devices used as shown in the tabe below.
+
 ![Scaling performance](https://github.com/ahariri13/FALCON/blob/master/tablescaling.PNG)
 
 # Prerequisites 
