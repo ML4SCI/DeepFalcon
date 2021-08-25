@@ -21,7 +21,7 @@ are replaced by graph convolutional networks inspired from [9]
 
 # Results
 
-![Sample Reconstruction](/pract_img.PNG)
+![Sample Reconstruction](https://github.com/ahariri13/FALCON/blob/master/pract_img.png)
 
 ![Sample Reconstruction2](https://github.com/ahariri13/FALCON/blob/master/rec2.PNG)
 
