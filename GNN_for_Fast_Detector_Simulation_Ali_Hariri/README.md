@@ -21,7 +21,7 @@ are replaced by graph convolutional networks inspired from [9]
 
 # Results
 
-![Sample Reconstruction](https://github.com/ahariri13/FALCON/blob/master/rec1.PNG)
+![Sample Reconstruction](https://github.com/ahariri13/DeepFalcon/GNN_for_Fast_Detector_Simulation_Ali_Hariri/blob/master/pract_img.png)
 
 ![Sample Reconstruction2](https://github.com/ahariri13/FALCON/blob/master/rec2.PNG)
 
