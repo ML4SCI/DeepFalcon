@@ -7,7 +7,7 @@ luminosities, meaning that more data will be collected and processed. As a resul
 
 # Graph Generative Models
 Recently, deep generative models have shown notable potential in computer vision applications such as image generation andsegmentation. Their ability to model complex distributions
-in addition to dealing with missingdata and interpolation makes them an interesting candidate for detector physics applications.The most widely used generative models include 
+in addition to dealing with missing data and interpolation makes them an interesting candidate for detector physics applications.The most widely used generative models include 
 Generative Adversarial Networks and Variational Auto-Encoders. 
 
 While VAEs have shown significant potential with regards to generative models that operate
@@ -21,7 +21,7 @@ are replaced by graph convolutional networks inspired from [9]
 
 # Results
 
-![Sample Reconstruction](https://github.com/ahariri13/DeepFalcon/GNN_for_Fast_Detector_Simulation_Ali_Hariri/main/pract_img.png)
+![Sample Reconstruction](https://github.com/ahariri13/DeepFalcon/GNN_for_Fast_Detector_Simulation_Ali_Hariri/blob/main/pract_img.png)
 
 ![Sample Reconstruction2](https://github.com/ahariri13/FALCON/blob/master/rec2.PNG)
 
