@@ -23,7 +23,9 @@ are replaced by graph convolutional networks inspired from [9]
 
 ![Sample Reconstruction](https://github.com/ahariri13/FALCON/blob/master/pract_img.png)
 
-![Sample Reconstruction2](https://github.com/ahariri13/FALCON/blob/master/rec2.PNG)
+![Model Architecture](https://github.com/ahariri13/FALCON/blob/master/model.png)
+
+![Scaling performance](https://github.com/ahariri13/FALCON/blob/master/tablescaling.png)
 
 # Prerequisites 
 
