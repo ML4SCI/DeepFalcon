@@ -38,3 +38,13 @@ We train the GVAE model on a cluster using Volta V100 GPUs with 16 GB of RAM. Fo
 
 # References 
 CMS Open Data Release: http://opendata.cern.ch
+
+# Contact
+- Please contact [Ali Hariri](https://github.com/ahariri13) for questions/comments related to this repository. 
+- This project was mentored by [Prof. Sergei V. Gleyzer](http://sergeigleyzer.com/).
+
+# About me
+
+Ali Hariri has recently finished his Master's of Engineering at the American University of Beirut and was part of the 2021 Google Summer of Code. 
+
+
