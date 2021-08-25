@@ -23,6 +23,8 @@ are replaced by graph convolutional networks inspired from [9]
 
 ![Sample Reconstruction](https://github.com/ahariri13/FALCON/blob/master/pract_img.png)
 
+We use the k-nearest neighbour algorithm to connect each node representing a reconstructed hit in a detector cell to k neighbouring cells closest in Euclidean distance given by $\sqrt{(x-x_i)^2+(y-y_i)^2}$. Therefore, the reconstructed detector hits are mapped into nodes that contain 3 features: x and y locations and the reconstructed energy of the hit. We next learn the high dimensional representation of the nodes using a Graph Variational Autoencoder (GVAE), a geometric deep learning architecture that learns the graph embeddings of the non-Euclidean data in a latent space
+
 ![Model Architecture](https://github.com/ahariri13/FALCON/blob/master/model.PNG)
 
 ![Scaling performance](https://github.com/ahariri13/FALCON/blob/master/tablescaling.PNG)
