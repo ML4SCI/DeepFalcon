@@ -1,3 +1,3 @@
 <div align="center">
 
-#  Normalizing Flows for Fast Detector Simulation
+#  Diffusion Models for Fast Detector Simulation
