@@ -1,5 +1,9 @@
 import torch
 from torch.utils.data import *
+import pyarrow.parquet as pq
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 class ParquetDataset(Dataset):
     def __init__(self, filename, batch_size=256):
@@ -20,8 +24,6 @@ class ParquetDataset(Dataset):
     def __len__(self):
         return self.parquet.num_row_groups
 
-
-
     def get_batch(self, start_index, end_index):
         data = self.parquet.read_row_group(start_index, columns=self.cols).to_pydict()
         data['X_jets'] = np.float32(data['X_jets'][0])
@@ -31,51 +33,98 @@ class ParquetDataset(Dataset):
 
         return reshaped_data
 
-    def analyze_data(self):
-        num_samples = len(self)
-        num_batches = (num_samples + self.batch_size - 1) // self.batch_size
-        track_means = []
-        ecal_means = []
-        hcal_means = []
-        track_mins = []
-        ecal_mins = []
-        hcal_mins = []
-        track_maxs = []
-        ecal_maxs = []
-        hcal_maxs = []
 
-        for batch_idx in range(num_batches):
-            start_index = batch_idx * self.batch_size
-            end_index = min(start_index + self.batch_size, num_samples)
-            batch_data = self.get_batch(start_index, end_index)
-            track_means.append(np.mean(batch_data[:, :, 0]))
-            ecal_means.append(np.mean(batch_data[:, :, 1]))
-            hcal_means.append(np.mean(batch_data[:, :, 2]))
-            track_mins.append(np.min(batch_data[:, :, 0]))
-            ecal_mins.append(np.min(batch_data[:, :, 1]))
-            hcal_mins.append(np.min(batch_data[:, :, 2]))
-            track_maxs.append(np.max(batch_data[:, :, 0]))
-            ecal_maxs.append(np.max(batch_data[:, :, 1]))
-            hcal_maxs.append(np.max(batch_data[:, :, 2]))
+def compute_mean_max_min(dataset):
+    num_samples = len(dataset)
+    track_max_list = []
+    ecal_max_list = []
+    hcal_max_list = []
 
-        track_mean = np.mean(track_means)
-        ecal_mean = np.mean(ecal_means)
-        hcal_mean = np.mean(hcal_means)
-        track_min = np.min(track_mins)
-        ecal_min = np.min(ecal_mins)
-        hcal_min = np.min(hcal_mins)
-        track_max = np.max(track_maxs)
-        ecal_max = np.max(ecal_maxs)
-        hcal_max = np.max(hcal_maxs)
+    track_min_list = []
+    ecal_min_list = []
+    hcal_min_list = []
 
-        return {
-            'track_mean': track_mean,
-            'ecal_mean': ecal_mean,
-            'hcal_mean': hcal_mean,
-            'track_min': track_min,
-            'ecal_min': ecal_min,
-            'hcal_min': hcal_min,
-            'track_max': track_max,
-            'ecal_max': ecal_max,
-            'hcal_max': hcal_max
-        }
+    for index in range(num_samples):
+        data = dataset[index]
+        # Track channel
+        track_max = np.max(data[:, :, 0])
+        track_min = np.min(data[:, :, 0])
+        track_max_list.append(track_max)
+        track_min_list.append(track_min)
+
+        # ECAL channel
+        ecal_max = np.max(data[:, :, 1])
+        ecal_min = np.min(data[:, :, 1])
+        ecal_max_list.append(ecal_max)
+        ecal_min_list.append(ecal_min)
+
+        # HCAL channel
+        hcal_max = np.max(data[:, :, 2])
+        hcal_min = np.min(data[:, :, 2])
+        hcal_max_list.append(hcal_max)
+        hcal_min_list.append(hcal_min)
+
+    # Compute the mean values
+    track_mean_max = np.mean(track_max_list)
+    ecal_mean_max = np.mean(ecal_max_list)
+    hcal_mean_max = np.mean(hcal_max_list)
+
+    track_mean_min = np.mean(track_min_list)
+    ecal_mean_min = np.mean(ecal_min_list)
+    hcal_mean_min = np.mean(hcal_min_list)
+
+    return {
+        'track_mean_max': track_mean_max,
+        'ecal_mean_max': ecal_mean_max,
+        'hcal_mean_max': hcal_mean_max,
+        'track_mean_min': track_mean_min,
+        'ecal_mean_min': ecal_mean_min,
+        'hcal_mean_min': hcal_mean_min
+    }
+
+def analyze_data(dataset):
+    num_samples = len(dataset)
+    track_means = []
+    ecal_means = []
+    hcal_means = []
+    track_mins = []
+    ecal_mins = []
+    hcal_mins = []
+    track_maxs = []
+    ecal_maxs = []
+    hcal_maxs = []
+
+    for index in range(num_samples):
+        data = dataset[index]
+        track_means.append(np.mean(data[:, :, 0]))
+        ecal_means.append(np.mean(data[:, :, 1]))
+        hcal_means.append(np.mean(data[:, :, 2]))
+        track_mins.append(np.min(data[:, :, 0]))
+        ecal_mins.append(np.min(data[:, :, 1]))
+        hcal_mins.append(np.min(data[:, :, 2]))
+        track_maxs.append(np.max(data[:, :, 0]))
+        ecal_maxs.append(np.max(data[:, :, 1]))
+        hcal_maxs.append(np.max(data[:, :, 2]))
+
+    track_mean = np.mean(track_means)
+    ecal_mean = np.mean(ecal_means)
+    hcal_mean = np.mean(hcal_means)
+    track_min = np.min(track_mins)
+    ecal_min = np.min(ecal_mins)
+    hcal_min = np.min(hcal_mins)
+    track_max = np.max(track_maxs)
+    ecal_max = np.max(ecal_maxs)
+    hcal_max = np.max(hcal_maxs)
+
+    return {
+        'track_mean': track_mean,
+        'ecal_mean': ecal_mean,
+        'hcal_mean': hcal_mean,
+        'track_min': track_min,
+        'ecal_min': ecal_min,
+        'hcal_min': hcal_min,
+        'track_max': track_max,
+        'ecal_max': ecal_max,
+        'hcal_max': hcal_max
+    }
+
