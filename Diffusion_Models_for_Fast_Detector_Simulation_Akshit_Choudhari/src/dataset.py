@@ -34,6 +34,47 @@ class ParquetDataset(Dataset):
         return reshaped_data
 
 
+class PointParquetDataset(Dataset):
+    def __init__(self, filename, batch_size=256, transform=None):
+        self.parquet = pq.ParquetFile(filename)
+        self.cols = None
+        self.verbose = False
+        self.batch_size = batch_size
+        self.transform = transform
+
+    def __getitem__(self, index):
+        data = self.parquet.read_row_group(index, columns=self.cols).to_pydict()
+        data['X_jets'] = np.float32(data['X_jets'][0])
+        # print(data['X_jets'].shape)
+        # print(data['X_jets'][0:].shape)
+        image = data['X_jets'][0:]
+        image = np.transpose(image, (1, 2, 0))
+
+        non_zero_Tracks = np.nonzero(image[:, :, 0])
+        non_zero_ECAL = np.nonzero(image[:, :, 1])
+        non_zero_HCAL = np.nonzero(image[:, :, 2])
+        coords_Tracks = np.column_stack(non_zero_Tracks)
+        coords_ECAL = np.column_stack(non_zero_ECAL)
+        coords_HCAL = np.column_stack(non_zero_HCAL)
+
+        #For visualization placing Tracks, ECAL, HCAL on z = 0,1,2 respectively. However when training 2D surface would be used i.e z=0 for all channels
+        values_Tracks = image[non_zero_Tracks[0], non_zero_Tracks[1], 0]     
+        values_ECAL = image[non_zero_ECAL[0], non_zero_ECAL[1], 1] 
+        values_HCAL = image[non_zero_HCAL[0], non_zero_HCAL[1], 2]
+
+        coords_Tracks = np.hstack((coords_Tracks, np.zeros((coords_Tracks.shape[0], 1))))
+        coords_ECAL = np.hstack((coords_ECAL, np.zeros((coords_ECAL.shape[0], 1))))
+        coords_HCAL = np.hstack((coords_HCAL, np.zeros((coords_HCAL.shape[0], 1))))
+        
+        # Store the point cloud for this image in the list
+        point_cloud = {'tracks': (coords_Tracks, values_Tracks), 'ECAL': (coords_ECAL, values_ECAL), 'HCAL': (coords_HCAL, values_HCAL)}
+
+        return point_cloud
+
+    def __len__(self):
+        return self.parquet.num_row_groups
+
+
 def compute_mean_max_min(dataset):
     num_samples = len(dataset)
     track_max_list = []
