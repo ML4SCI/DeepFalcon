@@ -16,6 +16,8 @@ from torch.utils.data import Dataset, DataLoader, random_split
 import h5py
 from torchvision import transforms
 
+from dataset import ParquetDataset, preprocess_minmax, preprocess_standardization
+
 def show_tensor_image(image):
 
     reverse_transforms = transforms.Compose([
@@ -104,6 +106,27 @@ plt.figure(figsize=(55,55))
 plt.axis('off')
 num_images = 10
 stepsize = int(T/num_images)
+
+
+parquet_file_path = '/content/drive/MyDrive/GSoC/data/Boosted_Jets_Sample-1.snappy.parquet'
+
+data_transforms = transforms.Compose([
+    transforms.Lambda(preprocess_standardization),
+])
+
+# data_transforms = transforms.Compose([
+#     transforms.Lambda(preprocess_minmax),
+# ])
+data = ParquetDataset(parquet_file_path, transform=data_transforms)
+
+
+# Split the dataset into training and testing sets
+train_size = int(0.8 * len(data))
+test_size = len(data) - train_size
+train_dataset, test_dataset = random_split(data, [train_size, test_size])
+
+train_loader = DataLoader(train_dataset, batch_size=256, shuffle=True, drop_last=True)
+test_loader = DataLoader(test_dataset, batch_size=256, shuffle=False, drop_last=True)
 
 # Simulate forward diffusion
 image = next(iter(train_loader))[0]
