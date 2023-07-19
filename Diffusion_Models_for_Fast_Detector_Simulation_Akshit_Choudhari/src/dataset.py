@@ -75,6 +75,55 @@ class PointParquetDataset(Dataset):
         return self.parquet.num_row_groups
 
 
+def preprocess_standardization(data):
+    # Track channel
+    track_mean = np.mean(data[:, :, 0])
+    track_std = np.std(data[:, :, 0])
+    standardized_track = (data[:, :, 0] - track_mean) / track_std
+
+    # ECAL channel
+    ecal_mean = np.mean(data[:, :, 1])
+    ecal_std = np.std(data[:, :, 1])
+    standardized_ecal = (data[:, :, 1] - ecal_mean) / ecal_std
+
+    # HCAL channel
+    hcal_mean = np.mean(data[:, :, 2])
+    hcal_std = np.std(data[:, :, 2])
+    standardized_hcal = (data[:, :, 2] - hcal_mean) / hcal_std
+
+    data[:, :, 0] = standardized_track
+    data[:, :, 1] = standardized_ecal
+    data[:, :, 2] = standardized_hcal
+
+    return data
+
+def preprocess_minmax(data):
+    # Track channel
+    track_min = np.min(data[:, :, 0])
+    track_max = np.max(data[:, :, 0])
+    scaled_track = (data[:, :, 0] - track_min) / (track_max - track_min) * 2 - 1  # Scale to -1 to 1 range
+
+    # ECAL channel
+    ecal_min = np.min(data[:, :, 1])
+    ecal_max = np.max(data[:, :, 1])
+    normalized_ecal = (data[:, :, 1] - ecal_min) / (ecal_max - ecal_min)  # Normalize to 0 to 1 range
+
+    # HCAL channel
+    hcal_min = np.min(data[:, :, 2])
+    hcal_max = np.max(data[:, :, 2])
+    normalized_hcal = (data[:, :, 2] - hcal_min) / (hcal_max - hcal_min)  # Normalize to 0 to 1 range
+
+    # # Combine the channels
+    # combined = scaled_track + normalized_ecal + normalized_hcal
+    # combined = np.expand_dims(combined, axis=-1)
+
+    data[:, :, 0] = scaled_track
+    data[:, :, 1] = normalized_ecal
+    data[:, :, 2] = normalized_hcal
+
+    return data
+
+
 def compute_mean_max_min(dataset):
     num_samples = len(dataset)
     track_max_list = []
