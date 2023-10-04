@@ -28,8 +28,6 @@ class Block(nn.Module):
         
         # Down or Upsample
         return self.transform(h)
-
-
 class SinusoidalPositionEmbeddings(nn.Module):
     def __init__(self, dim):
         super().__init__()
@@ -44,7 +42,6 @@ class SinusoidalPositionEmbeddings(nn.Module):
         embeddings = torch.cat((embeddings.sin(), embeddings.cos()), dim=-1)
         return embeddings
 
-
 class SimpleUnet(nn.Module):
     def __init__(self):
         super().__init__()
@@ -55,7 +52,6 @@ class SimpleUnet(nn.Module):
 
         # down_channels = (128, 256, 512, 1024)
         # up_channels = (1024, 512, 256, 128)
-
         out_dim = 1 
         time_emb_dim = 32
 
@@ -80,7 +76,6 @@ class SimpleUnet(nn.Module):
         self.output = nn.Conv2d(up_channels[-1], 3, out_dim)
 
     def forward(self, x, timestep):
-        # print("Inside forward")
         t = self.time_mlp(timestep)
 
         x = x.float()    #
@@ -92,9 +87,6 @@ class SimpleUnet(nn.Module):
             residual_inputs.append(x)
         for up in self.ups:
             residual_x = residual_inputs.pop()
-
-            # print(x.shape)
-            # print(residual_x.shape)
             x = torch.cat((x, residual_x), dim=1)       # Add residual x as additional channels  
 
             x = up(x, t)
