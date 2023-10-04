@@ -1,6 +1,6 @@
+import torch
 from torch import nn
 import math
-
 
 class Block(nn.Module):
     def __init__(self, in_ch, out_ch, time_emb_dim, up=False):
@@ -25,6 +25,7 @@ class Block(nn.Module):
         h = h + time_emb       # Add time channel
 
         h = self.bnorm2(self.relu(self.conv2(h)))      # Second Conv
+        
         # Down or Upsample
         return self.transform(h)
 
